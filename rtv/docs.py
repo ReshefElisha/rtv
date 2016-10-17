@@ -51,7 +51,7 @@ https://github.com/michael-lazar/rtv
   i     : Display new messages
   s     : Show subscribed subreddits
   S     : Show subscribed multireddits
-  w     : Save a submission/comment 
+  w     : Save a submission/comment
   l     : View comments, or open comment in pager
   h     : Return to subreddit
   o     : Open the submission or comment url
@@ -144,4 +144,14 @@ OAUTH_SUCCESS = """\
        <h1 style="color: green">Access Granted</h1><hr>
        <p><span style="font-weight: bold">Reddit Terminal Viewer</span>
        will now log in, you can close this window.</p>
+"""
+
+TIME_ORDER_MENU = """
+Links from:
+  [1] Past hour
+  [2] Past 24 hours
+  [3] Past week
+  [4] Past month
+  [5] Past year
+  [6] All time
 """
