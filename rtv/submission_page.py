@@ -291,7 +291,7 @@ class SubmissionPage(Page):
             split_text.append('(Not enough space to display)')
 
         for row, text in enumerate(split_text, start=offset):
-            self.term.add_line(win, text, row, 1)
+            self.term.add_markdown_line(win, text, row, 1)
 
         row = len(data['split_title']) + len(split_text) + 3
         self.term.add_line(win, '{score} '.format(**data), row, 1)
