@@ -274,6 +274,35 @@ class Terminal(object):
         params = [] if attr is None else [attr]
         window.addstr(row, col, text, *params)
 
+    def add_markdown_line(self, window, text, row=None, col=None):
+        """
+        Markdown enabled version of add_line method.
+        Draws a formatted line of text on the window at starting position
+        (row, col).
+        """
+
+        cursor_row, cursor_col = window.getmaxyx()
+        row = row if row is not None else cursor_row
+        col = col if col is not None else cursor_col
+
+        max_rows, max_cols = window.getmaxyx()
+        n_cols = max_cols - col - 1
+        if n_cols <= 0:
+            # Trying to draw outside of screen bounds
+            return
+
+        text = self.clean(text, n_cols)
+        attr = [curses.A_NORMAL] * len(text)
+        while '**' in text and '**' in text.replace('**', '', 1):
+            b_start = text.find('**')
+            text = text.replace('**', '', 1)
+            b_end = text.find('**')
+            text = text.replace('**', '', 1)
+            for i in range(b_start, b_end):
+                attr[i] = curses.A_BOLD
+        for i in range(len(text)):
+            self.addch(window, row, col+i, ord(text[i]), attr[i])
+
     def show_notification(self, message, timeout=None):
         """
         Overlay a message box on the center of the screen and wait for input.

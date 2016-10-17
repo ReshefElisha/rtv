@@ -237,7 +237,7 @@ class SubmissionPage(Page):
 
         for row, text in enumerate(split_body, start=offset+1):
             if row in valid_rows:
-                self.term.add_line(win, text, row, 1)
+                self.term.add_markdown_line(win, text, row, 1)
 
         # Unfortunately vline() doesn't support custom color so we have to
         # build it one segment at a time.
